@@ -29,6 +29,9 @@ export default function PaperSearch() {
          const data = await response.json()
          setPapers(data.length > 0 ? data : null)
       }
+      else{
+        setPapers(null);
+      }
     } catch (error) {
       console.error('Error fetching papers:', error)
       setPapers(null)
