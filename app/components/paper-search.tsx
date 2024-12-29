@@ -25,8 +25,10 @@ export default function PaperSearch() {
     setIsLoading(true)
     try {
       const response = await fetch(`/api/${useSemanticScholar ? 'semantic-scholar' : 'arxiv'}?query=${encodeURIComponent(query)}`)
-      const data = await response.json()
-      setPapers(data.length > 0 ? data : null)
+      if (response.ok) {
+         const data = await response.json()
+         setPapers(data.length > 0 ? data : null)
+      }
     } catch (error) {
       console.error('Error fetching papers:', error)
       setPapers(null)
